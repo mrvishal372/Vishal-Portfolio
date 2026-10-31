@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>VYRON TYPING — Complete Professional Typing Platform</title>
+    <meta name="description" content="VYRON TYPING - Modern professional typing practice and competitive exam preparation platform. Touch typing lessons, real-time mechanical switch feedback, coding syntax, and verified certificates." />
+    <meta property="og:title" content="VYRON TYPING — Complete Professional Typing Platform" />
+    <meta property="og:description" content="VYRON TYPING - Modern professional typing practice and competitive exam preparation platform. Touch typing lessons, real-time mechanical switch feedback, coding syntax, and verified certificates." />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='20' height='16' x='2' y='4' rx='3'/><path d='M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 16h10'/></svg>" />
+    <meta name="theme-color" content="#ffffff" id="theme-color-meta" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" id="apple-status-bar-meta" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+    <link rel="preconnect" href="https://www.googlevideo.com" crossorigin />
+    <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
+    <link rel="dns-prefetch" href="https://www.googlevideo.com" />
+    <link rel="dns-prefetch" href="https://i.ytimg.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        try {
+          var profileStr = localStorage.getItem('bharatjugaad_user_profile_v1');
+          var savedTheme = null;
+          if (profileStr) {
+            try { savedTheme = JSON.parse(profileStr).theme; } catch (e) {}
+          }
+          if (!savedTheme) {
+            savedTheme = localStorage.getItem('vyron_visitor_theme');
+          }
+          var isDark = savedTheme === 'dark';
+          var color = isDark ? '#020617' : '#ffffff';
+          var barStyle = isDark ? 'black-translucent' : 'default';
+
+          var docEl = document.documentElement;
+          if (isDark) {
+            docEl.classList.add('dark');
+            docEl.style.colorScheme = 'dark';
+          } else {
+            docEl.classList.remove('dark');
+            docEl.style.colorScheme = 'light';
+          }
+          docEl.style.backgroundColor = color;
+          if (document.body) document.body.style.backgroundColor = color;
+
+          var meta = document.getElementById('theme-color-meta');
+          if (meta) meta.setAttribute('content', color);
+          var appleMeta = document.getElementById('apple-status-bar-meta');
+          if (appleMeta) appleMeta.setAttribute('content', barStyle);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased font-['Poppins',sans-serif]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background radial glow -->
+    <radialGradient id="skyGrad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="60%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="rayaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FACC15"/>
+      <stop offset="100%" stop-color="#EAB308"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="shadowSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="blueStrap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <pattern id="checkPattern" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#FFFFFF"/>
+      <rect x="8" width="8" height="8" fill="#1E293B"/>
+      <rect y="8" width="8" height="8" fill="#1E293B"/>
+      <rect x="8" y="8" width="8" height="8" fill="#FFFFFF"/>
+      <line x1="0" y1="0" x2="16" y2="0" stroke="#0F172A" stroke-width="0.75"/>
+      <line x1="0" y1="8" x2="16" y2="8" stroke="#0F172A" stroke-width="0.75"/>
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#0F172A" stroke-width="0.75"/>
+      <line x1="8" y1="0" x2="8" y2="16" stroke="#0F172A" stroke-width="0.75"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Circular Border with White Trim (exactly like user photo) -->
+  <circle cx="256" cy="256" r="252" fill="url(#skyGrad)" stroke="#000080" stroke-width="8"/>
+  <circle cx="256" cy="256" r="248" fill="none" stroke="#FFFFFF" stroke-width="2.5" opacity="0.9"/>
+
+  <!-- Background: CIMAGE building & RAYA RAJ 3D graphic banner -->
+  <g id="bgFest" opacity="0.85">
+    <!-- CIMAGE Signboard Top Left -->
+    <rect x="68" y="74" width="124" height="46" rx="4" fill="#FFFFFF" opacity="0.9" stroke="#94A3B8" stroke-width="1"/>
+    <rect x="74" y="80" width="16" height="16" rx="2" fill="#1E3A8A"/>
+    <text x="96" y="94" font-family="sans-serif" font-weight="900" font-size="14" fill="#DC2626">CIMAGE</text>
+    <text x="74" y="108" font-family="sans-serif" font-weight="600" font-size="6.5" fill="#1E3A8A">GROUP OF INSTITUTIONS</text>
+
+    <!-- Fest Crowd Silhouettes in background -->
+    <ellipse cx="410" cy="320" rx="90" ry="120" fill="#0A0F1D" opacity="0.7"/>
+    <circle cx="430" cy="220" r="16" fill="#FCD34D" opacity="0.3"/>
+    <circle cx="460" cy="240" r="14" fill="#FCD34D" opacity="0.3"/>
+    <circle cx="390" cy="250" r="15" fill="#FCD34D" opacity="0.3"/>
+
+    <!-- Large Bold RAYA RAJ Festive 3D typography behind Vishal -->
+    <text x="146" y="180" font-family="sans-serif" font-weight="900" font-size="52" fill="url(#rayaGrad)" stroke="#1D4ED8" stroke-width="4" letter-spacing="2" filter="url(#glow)">RAYA</text>
+    <text x="352" y="196" font-family="sans-serif" font-weight="900" font-size="44" fill="#60A5FA" stroke="#FACC15" stroke-width="3" letter-spacing="1">RAJ</text>
+  </g>
+
+  <!-- Foreground Subject: Vishal Yadav -->
+  <g id="vishalPortrait">
+    <!-- Body & Crossed Arms in Black-White Checkered Shirt -->
+    <!-- Shoulder base -->
+    <path d="M120 480 C110 390, 150 360, 256 360 C362 360, 402 390, 392 480 Z" fill="url(#checkPattern)"/>
+    
+    <!-- Royal Blue Backpack Straps (authentic to the photo) -->
+    <path d="M176 362 C172 388, 172 430, 174 460 L194 460 C192 430, 192 388, 196 362 Z" fill="url(#blueStrap)" stroke="#1E40AF" stroke-width="1.5"/>
+    <path d="M336 362 C340 388, 340 430, 338 460 L318 460 C320 430, 320 388, 316 362 Z" fill="url(#blueStrap)" stroke="#1E40AF" stroke-width="1.5"/>
+
+    <!-- Crossed Arms Foreground (Authentic signature pose) -->
+    <!-- Left Forearm crossed over -->
+    <path d="M150 420 Q256 460 360 410 C350 448, 320 468, 256 470 C190 468, 160 448, 150 420 Z" fill="url(#checkPattern)" stroke="#0F172A" stroke-width="2"/>
+    <!-- Folded Hands tucking under arms -->
+    <ellipse cx="168" cy="406" rx="22" ry="14" fill="url(#skin)" transform="rotate(-15 168 406)"/>
+    <ellipse cx="344" cy="406" rx="22" ry="14" fill="url(#skin)" transform="rotate(15 344 406)"/>
+
+    <!-- Open Collar & Chest Cutout -->
+    <path d="M228 358 L256 398 L284 358 Z" fill="url(#shadowSkin)"/>
+    <path d="M236 358 L256 388 L276 358 Z" fill="url(#skin)"/>
+    <!-- Shirt Collar Wings -->
+    <polygon points="214,354 246,368 234,394 218,368" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+    <polygon points="298,354 266,368 278,394 294,368" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+
+    <!-- Neck with realistic muscular contour -->
+    <path d="M228 300 L228 360 Q256 372 284 360 L284 300 Z" fill="url(#skin)"/>
+    <!-- Neck shadow under jaw -->
+    <ellipse cx="256" cy="304" rx="36" ry="10" fill="#D97706" opacity="0.6"/>
+
+    <!-- Head & Facial Structure -->
+    <path d="M192 230 C192 144, 320 144, 320 230 C320 292, 286 312, 256 312 C226 312, 192 292, 192 230 Z" fill="url(#skin)"/>
+
+    <!-- Light facial stubble / well-groomed contour -->
+    <path d="M214 260 C214 294, 236 308, 256 308 C276 308, 298 294, 298 260 C298 285, 276 300, 256 300 C236 300, 214 285, 214 260 Z" fill="#78350F" opacity="0.3"/>
+
+    <!-- Ears -->
+    <ellipse cx="188" cy="232" rx="10" ry="16" fill="url(#skin)"/>
+    <ellipse cx="189" cy="232" rx="5" ry="9" fill="#D97706" opacity="0.7"/>
+    <ellipse cx="324" cy="232" rx="10" ry="16" fill="url(#skin)"/>
+    <ellipse cx="323" cy="232" rx="5" ry="9" fill="#D97706" opacity="0.7"/>
+
+    <!-- Hair (Voluminous modern dark quiff styling) -->
+    <path d="M188 206 C182 126, 220 96, 256 94 C292 96, 330 126, 324 206 C314 166, 296 142, 256 142 C216 142, 198 166, 188 206 Z" fill="#0F172A"/>
+    <path d="M186 190 C188 120, 236 94, 266 98 C302 102, 328 132, 322 178 C306 146, 280 134, 246 134 C216 134, 198 156, 186 190 Z" fill="#1E293B"/>
+    <path d="M210 120 C234 104, 280 104, 302 122 C282 112, 238 112, 210 120 Z" fill="#334155" opacity="0.8"/>
+
+    <!-- SACRED TILAK ON FOREHEAD (Authentic to user photo) -->
+    <!-- Yellow Chandan Rectangular Patch -->
+    <rect x="238" y="174" width="36" height="18" rx="4" fill="#FEF08A" stroke="#FBBF24" stroke-width="1"/>
+    <!-- Red Trishul / Tripundra Holy Symbol -->
+    <g transform="translate(256, 183)">
+      <path d="M0 -6 L0 5" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-6 -3 Q-3 1 0 3 Q3 1 6 -3" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="0" cy="5" r="1.5" fill="#DC2626"/>
+    </g>
+
+    <!-- Eyebrows (Neat & masculine) -->
+    <path d="M208 204 Q226 198 238 202" stroke="#0F172A" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <path d="M274 202 Q286 198 304 204" stroke="#0F172A" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Eyes (Warm & confident with catchlight) -->
+    <ellipse cx="224" cy="218" rx="7" ry="8" fill="#0F172A"/>
+    <circle cx="226" cy="216" r="2.5" fill="#FFFFFF"/>
+    <circle cx="222" cy="220" r="1.2" fill="#FFFFFF" opacity="0.8"/>
+    <path d="M214 212 Q224 208 234 213" stroke="#0F172A" stroke-width="2" fill="none"/>
+
+    <ellipse cx="288" cy="218" rx="7" ry="8" fill="#0F172A"/>
+    <circle cx="290" cy="216" r="2.5" fill="#FFFFFF"/>
+    <circle cx="286" cy="220" r="1.2" fill="#FFFFFF" opacity="0.8"/>
+    <path d="M278 213 Q288 208 298 212" stroke="#0F172A" stroke-width="2" fill="none"/>
+
+    <!-- Nose -->
+    <path d="M256 216 L252 244 L260 244" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <ellipse cx="248" cy="245" rx="3.5" ry="2" fill="#B45309" opacity="0.7"/>
+    <ellipse cx="264" cy="245" rx="3.5" ry="2" fill="#B45309" opacity="0.7"/>
+
+    <!-- Gentle Confident Smile -->
+    <path d="M238 266 Q256 280 274 266" stroke="#9A3412" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M242 268 Q256 276 270 268" fill="#FFFFFF" opacity="0.9"/>
+  </g>
+</svg>

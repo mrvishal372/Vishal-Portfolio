@@ -1,0 +1,1145 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Global touch and smooth scrolling optimizations */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+  background-color: #ffffff;
+  color-scheme: light;
+}
+
+html.dark {
+  background-color: #020617 !important;
+  color-scheme: dark;
+}
+
+/* Light mode soft, clean & minimal canvas */
+body {
+  background-color: #ffffff;
+  color-scheme: light;
+  background-image: none;
+}
+
+html.dark body,
+body.dark {
+  background-color: #020617 !important;
+  color-scheme: dark;
+}
+
+/* Cross-fade element for smooth transition to dark mode with static ambient glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #02040a;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(30, 58, 138, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(147, 51, 234, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #02040a 0%, #030712 50%, #010206 100%);
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+html.dark body::before,
+body.dark::before {
+  opacity: 1;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow-x: hidden;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: auto;
+}
+
+/* Ensure mobile form inputs do not trigger layout scale / zoom on focus */
+input, select, textarea {
+  font-size: 16px !important;
+  touch-action: manipulation;
+}
+@media (min-width: 640px) {
+  input, select, textarea {
+    font-size: 0.875rem !important; /* text-sm on desktop */
+  }
+}
+
+/* Ensure button child elements do not swallow touch/click events or cause dead tap edges */
+button *, a *, [role="button"] * {
+  pointer-events: none;
+}
+/* Ensure form inputs, selects, textareas and contenteditable stay interactive */
+input *, select *, textarea *, [contenteditable="true"] * {
+  pointer-events: auto !important;
+}
+
+/* Dark mode button touch & pointer optimization to prevent backdrop-blur / overlay interception */
+.dark [role="button"],
+.dark button {
+  touch-action: manipulation !important;
+  pointer-events: auto !important;
+}
+
+.dark [role="button"] *,
+.dark button * {
+  pointer-events: none !important;
+}
+
+.dark [role="button"]::before,
+.dark [role="button"]::after,
+.dark button::before,
+.dark button::after {
+  pointer-events: none !important;
+}
+
+/* Scoped transition for dark/light mode toggles without forcing layout transitions on every DOM element */
+html,
+body,
+header,
+nav,
+footer,
+.theme-transition {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Apple-style ultra-thin scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 140, 140, 0.25) transparent;
+}
+
+.dark * {
+  scrollbar-color: rgba(220, 220, 220, 0.3) transparent;
+}
+
+/* Hide scrollbar utility classes */
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.scrollbar-none,
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* ==================================================
+   ULTRA-PREMIUM LUXURY SPLASH SCREEN ANIMATION
+   ================================================== */
+@keyframes splashLogoKeyframes {
+  0% {
+    transform: scale(0.60) translateY(0px);
+    opacity: 0;
+  }
+  21.4% { /* 0.15s */
+    transform: scale(0.82) translateY(-1px);
+    opacity: 0.6;
+  }
+  42.8% { /* 0.30s */
+    transform: scale(1.00) translateY(0px);
+    opacity: 1;
+  }
+  57.1% { /* 0.40s - Spring Bounce */
+    transform: scale(1.08) translateY(-2px);
+    opacity: 1;
+  }
+  78.5% { /* 0.55s - Settle */
+    transform: scale(1.00) translateY(0px);
+    opacity: 1;
+  }
+  100% { /* 0.70s */
+    transform: scale(1.00) translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes splashMicroFloatKeyframes {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(0.5deg);
+  }
+}
+
+@keyframes splashTextFadeUpKeyframes {
+  0%, 45% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  80%, 100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes splashGlowPulseKeyframes {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 0.08;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.09;
+    transform: scale(1.15);
+  }
+}
+
+.splash-logo-anim {
+  animation: 
+    splashLogoKeyframes 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    splashMicroFloatKeyframes 3s ease-in-out infinite 0.7s;
+  will-change: transform, opacity;
+}
+
+.splash-text-anim {
+  animation: splashTextFadeUpKeyframes 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.splash-glow {
+  animation: splashGlowPulseKeyframes 0.7s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+.splash-glass-glow {
+  animation: splashGlowPulseKeyframes 0.7s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+/* ==================================================
+   GLOBAL PERFORMANCE & MICRO-INTERACTIONS
+   ================================================== */
+
+button, a, [role="button"], .micro-interactive {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+button:active:not(:disabled), [role="button"]:active {
+  transform: scale(0.97);
+  opacity: 0.92;
+}
+
+/* ==================================================
+   VYRON AI PRO ANIMATION ENGINE
+   ================================================== */
+
+@keyframes vyronAiRevealKeyframes {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vyronFadeInUpKeyframes {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vyronScalePopKeyframes {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes vyronSoundwaveBarKeyframes {
+  0%, 100% {
+    height: 4px;
+    opacity: 0.4;
+  }
+  50% {
+    height: 14px;
+    opacity: 1;
+  }
+}
+
+@keyframes vyronPillPulseKeyframes {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0);
+  }
+}
+
+/* Utility classes */
+.vyron-ai-reveal {
+  animation: vyronAiRevealKeyframes 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.vyron-fade-up {
+  animation: vyronFadeInUpKeyframes 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.vyron-pop {
+  animation: vyronScalePopKeyframes 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+  will-change: transform, opacity;
+}
+
+.vyron-card {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease !important;
+}
+
+.vyron-card:hover {
+  transform: translateY(-2px);
+}
+
+.vyron-card:active {
+  transform: scale(0.985);
+}
+
+.vyron-input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
+}
+
+.vyron-input:focus-within {
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25);
+}
+
+/* Smooth Motion Mode Settings */
+.reduced-motion {
+  /* Subtle motion damping if user explicitly enables Lite Mode in profile */
+  --motion-reduce: 1;
+}
+
+/* ==================================================
+   APPLE LIQUID GLASS UI DESIGN SYSTEM
+   ================================================== */
+
+/* Liquid Glass Base Surface */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(28px) saturate(210%) contrast(102%);
+  -webkit-backdrop-filter: blur(28px) saturate(210%) contrast(102%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05),
+    0 12px 36px -6px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.dark .liquid-glass {
+  background: rgba(8, 14, 28, 0.65);
+  backdrop-filter: blur(32px) saturate(220%) contrast(105%);
+  -webkit-backdrop-filter: blur(32px) saturate(220%) contrast(105%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.45),
+    0 20px 48px -10px rgba(0, 0, 0, 0.65);
+}
+
+/* Liquid Glass Card */
+.liquid-glass-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 30px -4px rgba(0, 0, 0, 0.06),
+    0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.dark .liquid-glass-card {
+  background: rgba(15, 23, 42, 0.68);
+  backdrop-filter: blur(28px) saturate(210%);
+  -webkit-backdrop-filter: blur(28px) saturate(210%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4),
+    0 16px 40px -8px rgba(0, 0, 0, 0.6);
+}
+
+.liquid-glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.9),
+    0 16px 40px -6px rgba(0, 0, 0, 0.1),
+    0 0 24px -2px rgba(56, 189, 248, 0.18);
+}
+
+.dark .liquid-glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.28),
+    0 20px 48px -6px rgba(0, 0, 0, 0.75),
+    0 0 28px -2px rgba(56, 189, 248, 0.22);
+}
+
+/* Liquid Glass Pill & Badges */
+.liquid-glass-pill {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dark .liquid-glass-pill {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px) saturate(190%);
+  -webkit-backdrop-filter: blur(18px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Fluid Prismatic Glass Specular Rim Effect */
+.glass-specular-rim {
+  position: relative;
+}
+
+.glass-specular-rim::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  pointer-events: none;
+}
+
+.dark .glass-specular-rim::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* Enhanced Liquid Glass Navigation Bar */
+.bottom-nav {
+  backdrop-filter: blur(32px) saturate(220%) contrast(102%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(220%) contrast(102%) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05),
+    0 16px 45px -8px rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+.dark .bottom-nav {
+  background: rgba(8, 14, 28, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.5),
+    0 24px 60px -10px rgba(0, 0, 0, 0.85),
+    0 0 20px rgba(56, 189, 248, 0.08) !important;
+}
+
+/* Liquid Glass Header Enhancement */
+header {
+  backdrop-filter: blur(30px) saturate(210%) contrast(102%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(210%) contrast(102%) !important;
+}
+
+/* iOS 26 Apple WWDC 2025 Liquid Glass Pill Effect */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-pill {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* 🍎 Liquid Glass SVG Filter Distortion & Transparent Liquid Nav */
+#liquid-distort-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+:root {
+  --lg-bg: rgba(255, 255, 255, 1);
+}
+.dark {
+  --lg-bg: rgba(15, 23, 42, 0.55);
+}
+
+.bottom-nav-wrapper {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  pointer-events: none !important;
+  z-index: 40;
+}
+
+.liquid-nav,
+#nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: center;
+  position: relative;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100%;
+  pointer-events: auto !important;
+  background: var(--lg-bg);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-radius: 9999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1.5px 2px rgba(255, 255, 255, 0.75);
+  padding: 5px;
+  gap: 3px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  transform: translate3d(0, 0, 0);
+  contain: layout style;
+}
+
+.dark .liquid-nav {
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 45px -4px rgba(0, 0, 0, 0.6), inset 0 1.5px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* 💧 Smooth Cylindrical Liquid Glass Pill - Pure Transparent & Light Blur */
+.liquid-drop {
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.06),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 1.5px rgba(0, 0, 0, 0.03);
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .liquid-drop {
+    filter: url(#liquid-distort);
+  }
+}
+
+.dark .liquid-drop {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1.5px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass specular water reflection highlight */
+.liquid-drop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.tab {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/* ✨ AI Shimmer Light Sweep on Hover (short, lightweight) */
+@keyframes aiShimmerSweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+/* 📱 Accessibility & Mobile Performance: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+
+
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-cursor-blink {
+  animation: cursorBlink 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ==================================================
+   MOBILE GAME UX FIXES (FULLSCREEN & OVERLAPS)
+   ================================================== */
+
+body.game-fullscreen {
+  overflow: hidden !important;
+  overscroll-behavior-y: none !important;
+}
+
+body.game-active {
+  overscroll-behavior-y: none !important;
+}
+
+/* Prevent unwanted selection during game */
+body.game-active .game-shell,
+body.game-active .game-container {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y; /* Allow vertical scrolling on the shell */
+}
+
+body.game-active canvas {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none; /* Disable scrolling only on the actual game canvas */
+}
+
+/* Hide header, footer and bottom nav when playing */
+body.game-fullscreen header,
+body.game-fullscreen .bottom-nav-wrapper,
+body.game-fullscreen footer {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* When any edit section or modal is opened on mobile/tablet: hide header and bottom navigation completely */
+@media (max-width: 1023px) {
+  body.modal-fullscreen-open header,
+  body.modal-fullscreen-open .bottom-nav-wrapper,
+  body.modal-fullscreen-open #nav {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(200%) !important;
+  }
+}
+
+body.modal-fullscreen-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none !important;
+}
+
+body.modal-fullscreen-open main {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none !important;
+}
+
+.allow-modal-scroll {
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+}
+
+/* Remove padding bottom when playing so it takes full height */
+body.game-fullscreen main {
+  padding-bottom: 0 !important;
+  min-height: 100dvh;
+}
+
+/* Dedicated mobile overlay for GameShell */
+.game-shell-mobile-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 9999;
+  background-color: var(--lg-bg);
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+}
+.dark .game-shell-mobile-fullscreen {
+  background-color: #02040a;
+}
+
+/* =========================================================
+   BATTLE GROUND ROOT
+   ========================================================= */
+
+.battle-ground-root {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.battle-ground-root * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  touch-action: none;
+}
+
+/* =========================================================
+   GENERAL HUD
+   ========================================================= */
+
+.hud {
+  position: absolute;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+/* =========================================================
+   TOP LEFT
+   ========================================================= */
+
+.hud-top-left {
+  top: max(12px, env(safe-area-inset-top));
+  left: max(12px, env(safe-area-inset-left));
+}
+
+.player-status {
+  min-width: 150px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 12px;
+  background: rgba(10,15,25,.55);
+  backdrop-filter: blur(8px);
+}
+
+.player-name {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  font-size: 10px;
+}
+
+.status-label {
+  width: 25px;
+}
+
+.bar {
+  flex: 1;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.15);
+}
+
+.bar span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  background: currentColor;
+}
+
+.armor {
+  color: #62a8ff;
+}
+
+/* =========================================================
+   COMPASS
+   ========================================================= */
+
+.hud-compass {
+  top: max(12px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(12px, 3vw, 28px);
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(5,10,18,.45);
+  backdrop-filter: blur(7px);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TOP RIGHT / MAP
+   ========================================================= */
+
+.hud-top-right {
+  top: max(10px, env(safe-area-inset-top));
+  right: max(10px, env(safe-area-inset-right));
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.match-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 7px 9px;
+  border-radius: 10px;
+  background: rgba(5,10,18,.45);
+  backdrop-filter: blur(7px);
+  font-size: 10px;
+}
+
+.hud-map-button {
+  position: relative;
+  width: clamp(82px, 16vw, 125px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(10,20,25,.7);
+  color: white;
+  cursor: pointer;
+}
+
+#miniMap {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(70,120,70,.7), rgba(60,100,120,.7));
+}
+
+.zone {
+  position: absolute;
+  border: 2px solid rgba(255,255,255,.8);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.player-marker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 10px rgba(255,255,255,.8);
+}
+
+#zoneTimer {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  transform: translateX(-50%);
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: rgba(0,0,0,.65);
+  font-size: 9px;
+}
+
+/* =========================================================
+   LEFT MOBILE CONTROLS
+   ========================================================= */
+
+.mobile-controls {
+  position: absolute;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.mobile-controls > * {
+  pointer-events: auto;
+}
+
+.left-controls {
+  left: max(14px, env(safe-area-inset-left));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.virtual-joystick {
+  width: clamp(110px, 22vw, 150px);
+  height: clamp(110px, 22vw, 150px);
+  display: grid;
+  place-items: center;
+  touch-action: none;
+}
+
+.joystick-base {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.22);
+  background: rgba(10,15,25,.35);
+  backdrop-filter: blur(5px);
+}
+
+.joystick-thumb {
+  position: absolute;
+  width: 42%;
+  height: 42%;
+  left: 29%;
+  top: 29%;
+  border-radius: 50%;
+  background: rgba(255,255,255,.25);
+  border: 2px solid rgba(255,255,255,.45);
+  transform: translate3d(0,0,0);
+}
+
+/* =========================================================
+   RIGHT ACTION CONTROLS
+   ========================================================= */
+
+.right-controls {
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  width: min(43vw, 280px);
+  height: min(43vw, 280px);
+}
+
+.hud-action {
+  width: clamp(46px, 9vw, 64px);
+  height: clamp(46px, 9vw, 64px);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(15,20,30,.52);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 4vw, 24px);
+  backdrop-filter: blur(7px);
+  touch-action: none;
+  user-select: none;
+  cursor: pointer;
+  transition: transform .08s ease, background .12s ease;
+}
+
+.hud-action:active {
+  transform: scale(.92);
+  background: rgba(255,255,255,.2);
+}
+
+.hud-action.fire {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(60px, 16vw, 100px);
+  height: clamp(60px, 16vw, 100px);
+  font-size: clamp(25px, 6vw, 40px);
+}
+
+#aimButton {
+  position: absolute;
+  right: clamp(75px, 18vw, 110px);
+  bottom: clamp(65px, 16vw, 90px);
+}
+
+.secondary-actions {
+  position: absolute;
+  right: clamp(65px, 17vw, 100px);
+  bottom: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: clamp(4px, 1.5vw, 8px);
+}
+
+/* =========================================================
+   BOTTOM HUD
+   ========================================================= */
+
+.bottom-hud {
+  left: 50%;
+  bottom: max(10px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: rgba(5,10,18,.5);
+  backdrop-filter: blur(8px);
+  max-width: 92vw;
+}
+
+.health-summary {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.weapon-info {
+  min-width: 130px;
+  text-align: center;
+}
+
+.weapon-name {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.ammo {
+  font-size: 11px;
+}
+
+.ammo strong {
+  font-size: 18px;
+}
+
+.weapon-slots {
+  display: flex;
+  gap: 5px;
+}
+
+.weapon-slot {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.08);
+  color: white;
+}
+
+.weapon-slot.active {
+  border-color: rgba(255,255,255,.8);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .player-status { min-width: 120px; }
+  .hud-compass { font-size: 9px; }
+  .bottom-hud { gap: 6px; padding: 6px 8px; }
+  .weapon-info { min-width: 90px; }
+  .health-summary { font-size: 9px; }
+}
+
+@media (max-width: 360px) {
+  .hud-map-button { width: 72px; }
+  .player-status { min-width: 105px; }
+  .right-controls { width: 47vw; height: 47vw; }
+  .bottom-hud { max-width: 96vw; }
+  .weapon-name { font-size: 8px; }
+  .ammo strong { font-size: 15px; }
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .left-controls { bottom: max(10px, env(safe-area-inset-bottom)); }
+  .right-controls { bottom: max(10px, env(safe-area-inset-bottom)); }
+  .hud-map-button { width: 78px; }
+  .virtual-joystick { width: 100px; height: 100px; }
+  .hud-action.fire { width: 72px; height: 72px; }
+  .bottom-hud { bottom: max(6px, env(safe-area-inset-bottom)); }
+}

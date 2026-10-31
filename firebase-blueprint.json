@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "public_profiles": {
+      "title": "Public Creator Portfolio & Profile",
+      "description": "Public owner portfolio and profile accessible for sub-second real-time sync across devices",
+      "type": "object",
+      "properties": {
+        "ownerUid": { "type": "string", "description": "UID of owner/creator" },
+        "personalPortfolio": { "type": "object", "description": "Full personal portfolio data" },
+        "name": { "type": "string", "description": "Display name of founder" },
+        "avatarUrl": { "type": "string", "description": "Profile picture URL or base64 data" },
+        "youtubeVideos": { "type": "array", "description": "List of curated and latest YouTube videos from founder channel" },
+        "youtubeVideosUpdatedAt": { "type": "number", "description": "Timestamp of last YouTube videos modification" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" }
+      }
+    },
+    "users": {
+      "title": "User Account Profile & Saved Data",
+      "description": "User profile details, avatar, and saved items keyed by Auth UID",
+      "properties": {
+        "name": { "type": "string", "description": "Full name of the user" },
+        "email": { "type": "string", "description": "Email address" },
+        "phone": { "type": "string", "description": "Phone number" },
+        "location": { "type": "string", "description": "City or state location" },
+        "bio": { "type": "string", "description": "Short bio or headline" },
+        "avatar": { "type": "string", "description": "Profile photo URL or base64 data" },
+        "language": { "type": "string", "description": "Preferred interface language" },
+        "theme": { "type": "string", "description": "Theme mode: light or dark" },
+        "notificationsEnabled": { "type": "boolean", "description": "Notification preference" },
+        "savedRecipes": { "type": "array", "description": "List of saved recipe items" },
+        "savedMedicines": { "type": "array", "description": "List of saved medicine items" },
+        "savedReminders": { "type": "array", "description": "List of medicine reminders" },
+        "savedSchemes": { "type": "array", "description": "List of bookmarked government schemes" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" }
+      },
+      "required": ["name", "email"]
+    },
+    "mobile_users": {
+      "title": "Mobile Number Account Profile & Data",
+      "description": "User profile details, bookmarks, and settings keyed by 10-digit mobile number",
+      "properties": {
+        "mobile": { "type": "string", "description": "10-digit mobile number" },
+        "name": { "type": "string", "description": "User name" },
+        "profile": { "type": "object", "description": "Full UserProfile data including bookmarks, schemes, recipes" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" }
+      },
+      "required": ["mobile"]
+    }
+  },
+  "firestore": {
+    "/public_profiles/owner": {
+      "schema": "public_profiles",
+      "description": "Public owner portfolio and profile document for real-time instant sub-second synchronization"
+    },
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "Private user account documents"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "BharatJugaad",
+  "description": "VYRON TYPING - Modern professional typing practice and competitive exam preparation platform. Touch typing lessons, real-time mechanical switch feedback, coding syntax, and verified certificates. Powered by Vyron AI.",
+  "requestFramePermissions": ["microphone", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

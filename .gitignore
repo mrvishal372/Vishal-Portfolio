@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+.vyron_backups/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
